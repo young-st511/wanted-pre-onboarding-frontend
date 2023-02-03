@@ -1,8 +1,14 @@
+import { ThemeProvider } from "styled-components";
+import mainTheme from "./themes/mainTheme";
+import GlobalStyle from "./themes/GlobalStyle";
+import Router from "./Router";
+
 function App() {
   return (
-  <div>
-    
-  </div>
+    <ThemeProvider theme={mainTheme}>
+      <GlobalStyle />
+      <Router />
+    </ThemeProvider>
   );
 }
 
