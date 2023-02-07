@@ -1,5 +1,5 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { Root } from "./pages";
+import { Root, SignIn, SignUp, Todo } from "./pages";
 import ErrorPage from "./pages/ErrorPage";
 
 function Router() {
@@ -8,6 +8,20 @@ function Router() {
       path: "/",
       element: <Root />,
       errorElement: <ErrorPage />,
+      children: [
+        {
+          path: "signUp",
+          element: <SignUp />,
+        },
+        {
+          path: "signIn",
+          element: <SignIn />,
+        },
+        {
+          path: "todo",
+          element: <Todo />,
+        },
+      ],
     },
   ]);
 
