@@ -21,14 +21,14 @@ npm start
 
 ### :: 1. 로그인 / 회원가입
 
-- [ ] `/signup` 경로에 회원가입 기능을 개발해주세요
-- [ ] `/signin` 경로에 로그인 기능을 개발해주세요
+- [x] `/signup` 경로에 회원가입 기능을 개발해주세요
+- [x] `/signin` 경로에 로그인 기능을 개발해주세요
 
-  - [ ] 페이지 안에 이메일 input, 비밀번호 input, 제출 button이 포함된 형태로 구성해주세요
+  - [x] 페이지 안에 이메일 input, 비밀번호 input, 제출 button이 포함된 형태로 구성해주세요
 
-    - [ ] 이메일 input에 `data-testid="email-input"` 속성을 부여해주세요
-    - [ ] 패스워드 input에 `data-testid="password-input"` 속성을 부여해주세요
-    - [ ] 회원가입 button에 `data-testid="signup-button"` 속성을 부여해주세요
+    - [x] 이메일 input에 `data-testid="email-input"` 속성을 부여해주세요
+    - [x] 패스워드 input에 `data-testid="password-input"` 속성을 부여해주세요
+    - [x] 회원가입 button에 `data-testid="signup-button"` 속성을 부여해주세요
     - [ ] 로그인 button에 `data-testid="signin-button"` 속성을 부여해주세요
 
     ```html
@@ -48,7 +48,7 @@ npm start
   - [x] 비밀번호 조건: 8자 이상
   - [x] 이메일과 비밀번호의 유효성 검사 조건은 별도의 추가 조건 부여 없이 위의 조건대로만 진행해주세요 (e.g. 비밀번호 유효성 검사에 특수문자 포함 등의 새로운 조건을 추가하는 행위를 지양해주세요)
 
-- [ ] 입력된 이메일과 비밀번호가 유효성 검사를 통과하지 못한다면 button에 `disabled` 속성을 부여해주세요
+- [x] 입력된 이메일과 비밀번호가 유효성 검사를 통과하지 못한다면 button에 `disabled` 속성을 부여해주세요
 - [ ] 보안 상 실제 사용하고 계신 이메일과 패스워드말고 테스트용 이메일, 패스워드 사용을 권장드립니다.
 
 #### Assignment 2

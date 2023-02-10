@@ -10,11 +10,11 @@ function Router() {
       errorElement: <ErrorPage />,
       children: [
         {
-          path: "signUp",
+          path: "signup",
           element: <SignUp />,
         },
         {
-          path: "signIn",
+          path: "signin",
           element: <SignIn />,
         },
         {

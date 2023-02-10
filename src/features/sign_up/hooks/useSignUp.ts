@@ -5,7 +5,7 @@ import { AxiosError } from "axios";
 import { showAxiosError } from "../../../utils/axios/showAxiosError";
 import { emailRegex, passwordRegex } from "../data/validationRegexes";
 
-export function useSignUp() {
+export function useSignUpForm(submitCallback: VoidFunction) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -22,21 +22,14 @@ export function useSignUp() {
   setIsValidEmail(validateEmail(email));
   setIsValidPassword(validatePassword(password));
 
-  const signUp = (data: SignUpRequest) => {
+  const handleSubmit = () => {
     if (!isValid) {
       console.error("Validation not confirmed");
       return;
     }
 
-    try {
-      postSignUp(data);
-    } catch (error) {
-      if (error instanceof AxiosError) {
-        showAxiosError(error);
-      } else {
-        console.error(error);
-      }
-    }
+    const submitData = { email, password };
+    signUp(submitData).then(submitCallback);
   };
 
   return {
@@ -47,7 +40,7 @@ export function useSignUp() {
     emailError,
     passwordError,
     isValid,
-    signUp,
+    handleSubmit,
   };
 }
 
@@ -57,4 +50,19 @@ function validateEmail(email: string) {
 
 function validatePassword(password: string) {
   return passwordRegex.test(password);
+}
+
+async function signUp(data: SignUpRequest) {
+  try {
+    const response = await postSignUp(data);
+    if (response.status != 201) {
+      throw new Error("Something Wrong!");
+    }
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      showAxiosError(error);
+    } else {
+      console.error(error);
+    }
+  }
 }

@@ -6,5 +6,5 @@ import { SignUpApiUrl, SignUpRequest } from "./signUpApi.type";
  * - Status: `201 Created`
  */
 export function postSignUp(data: SignUpRequest) {
-  postRequest<null, SignUpRequest>(SignUpApiUrl.SIGN_IN, data);
+  return postRequest<null, SignUpRequest>(SignUpApiUrl.SIGN_IN, data);
 }
