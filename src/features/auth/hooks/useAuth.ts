@@ -22,10 +22,14 @@ export function useAuth() {
       return false;
     }
 
-    let response: SignInResponse;
+    let responseData: SignInResponse;
 
     try {
-      response = await postSignIn(data);
+      const response = await postSignIn(data);
+      if (response.status != 200) {
+        throw new Error("Something Wrong!");
+      }
+      responseData = response.data;
     } catch (error) {
       if (error instanceof AxiosError) {
         showAxiosError(error);
@@ -38,7 +42,7 @@ export function useAuth() {
       return false;
     }
 
-    const token = response.access_token;
+    const token = responseData.access_token;
 
     setAccessToken(token);
     setTokenToAxiosDefault(token);
