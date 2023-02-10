@@ -1,10 +1,10 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 
-const postRequest = async <TRes, D>(
+async function postRequest<TRes, D>(
   url: string,
   data?: D,
   config?: AxiosRequestConfig<D> | undefined
-) => {
+) {
   const response = await axios.post<TRes, AxiosResponse<TRes, D>, D>(
     url,
     data,
@@ -12,22 +12,22 @@ const postRequest = async <TRes, D>(
   );
 
   return response;
-};
+}
 
-const getRequest = async <TRes>(
+async function getRequest<TRes>(
   url: string,
   config?: AxiosRequestConfig | undefined
-) => {
+) {
   const response = await axios.get<TRes>(url, config);
 
   return response;
-};
+}
 
-const putRequest = async <TRes, D>(
+async function putRequest<TRes, D>(
   url: string,
   data: D,
   config?: AxiosRequestConfig<D> | undefined
-) => {
+) {
   const response = await axios.put<TRes, AxiosResponse<TRes, D>, D>(
     url,
     data,
@@ -35,15 +35,15 @@ const putRequest = async <TRes, D>(
   );
 
   return response;
-};
+}
 
-const deleteRequest = async <TRes>(
+async function deleteRequest<TRes>(
   url: string,
   config?: AxiosRequestConfig | undefined
-) => {
+) {
   const response = await axios.delete<TRes>(url, config);
 
   return response;
-};
+}
 
 export { postRequest, getRequest, putRequest, deleteRequest };
