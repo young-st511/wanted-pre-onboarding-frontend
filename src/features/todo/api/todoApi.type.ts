@@ -30,13 +30,23 @@ export const TodoApiUrl = {
   deleteTodo: (id: number) => `${ApiDomains.TODO}/${id}`,
 } as const;
 
-export interface CreateTodoRequest {
-  todo: string;
-}
-
-export interface CreateTodoResponse {
+export interface Todo {
   id: number;
   todo: string;
   isCompleted: boolean;
   userId: number;
 }
+
+export interface CreateTodoRequest {
+  todo: string;
+}
+
+export type CreateTodoResponse = Todo;
+
+export type GetTodoListResponse = Todo[];
+
+export interface UpdateTodoRequest {
+  todo: string;
+  isCompleted: boolean;
+}
+export type UpdateTodoResponse = Todo;
