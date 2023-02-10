@@ -7,40 +7,49 @@ import {
 import { postSignIn } from "../api/authApi";
 import { SignInRequest, SignInResponse } from "../api/authApi.type";
 import { showAxiosError } from "../../../utils/axios/showAxiosError";
-import { setTokenToAxiosDefault } from "../../../utils/axios/axiosTokenUtils";
+import {
+  removeTokenFromAxiosDefualt,
+  setTokenToAxiosDefault,
+} from "../../../utils/axios/axiosTokenUtils";
+import { useState } from "react";
 
 export function useAuth() {
-  return { signIn, signOut };
-}
+  const [signInError, setSignInError] = useState("");
 
-async function signIn(data: SignInRequest) {
-  if (getAccessToken()) {
-    alert("You already signed in.");
-    return false;
-  }
-
-  let response: SignInResponse;
-
-  try {
-    response = await postSignIn(data);
-  } catch (error) {
-    if (error instanceof AxiosError) {
-      showAxiosError(error);
-    } else {
-      console.error(error);
+  const signIn = async (data: SignInRequest) => {
+    if (getAccessToken()) {
+      alert("You already signed in.");
+      return false;
     }
 
-    return false;
-  }
+    let response: SignInResponse;
 
-  const token = response.access_token;
+    try {
+      response = await postSignIn(data);
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        showAxiosError(error);
+      } else {
+        console.error(error);
+      }
 
-  setAccessToken(token);
-  setTokenToAxiosDefault(token);
+      setSignInError("이메일 또는 패스워드를 확인해주세요.");
 
-  return true;
+      return false;
+    }
+
+    const token = response.access_token;
+
+    setAccessToken(token);
+    setTokenToAxiosDefault(token);
+
+    return true;
+  };
+
+  return { signIn, signOut, signInError };
 }
 
 function signOut() {
   removeAccessToken();
+  removeTokenFromAxiosDefualt();
 }
