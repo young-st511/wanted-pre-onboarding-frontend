@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useSignUpForm } from "../hooks/useSignUp";
-import * as S from "../../../themes/FormStyle";
+import * as S from "../../../components/styles/FormStyle";
 
 function SignUpForm() {
   const navigate = useNavigate();
@@ -16,28 +16,38 @@ function SignUpForm() {
     handleSubmit,
   } = useSignUpForm(successSignUp);
   return (
-    <S.Form onSubmit={handleSubmit}>
-      <S.Input
-        value={email}
-        data-testid="email-input"
-        onChange={({ currentTarget }) => setEmail(currentTarget.value)}
-      />
-      <S.Error>{emailError}</S.Error>
-      <S.Input
-        value={password}
-        data-testid="password-input"
-        onChange={({ currentTarget }) => setPassword(currentTarget.value)}
-      />
-      <S.Error>{passwordError}</S.Error>
+    <S.Box>
+      <S.Title>Sign Up</S.Title>
+      <S.Form onSubmit={handleSubmit}>
+        <S.Label isError={!!emailError}>
+          <S.LabelTitle>이메일</S.LabelTitle>
+          <S.Input
+            value={email}
+            data-testid="email-input"
+            onChange={({ currentTarget }) => setEmail(currentTarget.value)}
+          />
+          <S.Error>{emailError}</S.Error>
+        </S.Label>
 
-      <S.SubmitButton
-        type="submit"
-        disabled={!isValid}
-        data-testid="signup-button"
-      >
-        Sign Up
-      </S.SubmitButton>
-    </S.Form>
+        <S.Label isError={!!passwordError}>
+          <S.LabelTitle>비밀번호</S.LabelTitle>
+          <S.Input
+            value={password}
+            data-testid="password-input"
+            onChange={({ currentTarget }) => setPassword(currentTarget.value)}
+          />
+          <S.Error>{passwordError}</S.Error>
+        </S.Label>
+
+        <S.SubmitButton
+          type="submit"
+          disabled={!isValid}
+          data-testid="signup-button"
+        >
+          Sign Up
+        </S.SubmitButton>
+      </S.Form>
+    </S.Box>
   );
 }
 

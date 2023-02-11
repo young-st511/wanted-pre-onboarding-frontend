@@ -1,13 +1,12 @@
-body {
-  margin: 0;
-  font-family: "SUIT", SUIT, -apple-system, "Noto Sans", BlinkMacSystemFont,
-    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-    "Droid Sans", "Helvetica Neue", sans-serif;
+:root {
+  font-family: "SUIT", SUIT, "Noto Sans KR", Helvetica, Arial, sans-serif;
+  font-size: 62.5%;
+  line-height: 24px;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  -webkit-text-size-adjust: 100%;
 }

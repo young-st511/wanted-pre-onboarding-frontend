@@ -9,7 +9,7 @@ const GlobalStyle = createGlobalStyle`
     background-color: ${({ theme }) => theme.color.bgColor};
 
     * {
-      font-family: SUIT;
+      font-family: SUIT, "SUIT";
       font-weight: 400;
       line-height: 2.4rem; 
       color: ${({ theme }) => theme.color.black};

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import * as S from "../../../themes/FormStyle";
+import * as S from "../../../components/styles/FormStyle";
 import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 
