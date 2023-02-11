@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { FormEventHandler, useEffect, useState } from "react";
 import { SignUpRequest } from "../api/signUpApi.type";
 import { postSignUp } from "../api/signUpApi";
 import { AxiosError } from "axios";
@@ -24,7 +24,9 @@ export function useSignUpForm(submitCallback: VoidFunction) {
     setIsValidPassword(validatePassword(password));
   }, [email, password]);
 
-  const handleSubmit = () => {
+  const handleSubmit: FormEventHandler = (e) => {
+    e.preventDefault();
+
     if (!isValid) {
       console.error("Validation not confirmed");
       return;
@@ -47,10 +49,16 @@ export function useSignUpForm(submitCallback: VoidFunction) {
 }
 
 function validateEmail(email: string) {
+  if (!email) {
+    return true;
+  }
   return emailRegex.test(email);
 }
 
 function validatePassword(password: string) {
+  if (!password) {
+    return true;
+  }
   return passwordRegex.test(password);
 }
 

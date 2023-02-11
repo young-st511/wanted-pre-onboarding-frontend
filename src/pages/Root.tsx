@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom";
+import { setAxiosDefaultConfig } from "../utils/axios/setAxiosDefaultConfig";
 
 function Root() {
   return (
@@ -7,6 +8,10 @@ function Root() {
       <Outlet />
     </div>
   );
+}
+
+function RootLoader() {
+  setAxiosDefaultConfig();
 }
 
 export default Root;
