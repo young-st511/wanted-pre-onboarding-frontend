@@ -15,7 +15,7 @@ function SignUp() {
 export function signUpLoader() {
   const auth = getAuth();
   if (auth) {
-    redirect("/todo");
+    return redirect("/todo");
   }
   return null;
 }
