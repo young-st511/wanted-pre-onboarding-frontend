@@ -7,7 +7,7 @@ function SignUp() {
   return (
     <>
       <SignUpForm />
-      <StyledLink to="signin">로그인 하기</StyledLink>
+      <StyledLink to="/signin">로그인 하기</StyledLink>
     </>
   );
 }
