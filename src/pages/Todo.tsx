@@ -1,16 +1,16 @@
-import { redirect } from "react-router-dom"
-import { getAccessToken } from "../utils/token/accessTokenUtils"
+import { redirect } from "react-router-dom";
+import { getAuth } from "../utils/token/getAuth";
 
 function Todo() {
-  return (
-    <div>Todo</div>
-  )
+  return <div>Todo</div>;
 }
 
-export function TodoLoader() {
-  if(!getAccessToken()) {
-    redirect("/signin")
+export function todoLoader() {
+  const auth = getAuth();
+  if (!auth) {
+    return redirect("/signin");
   }
+  return null;
 }
 
-export default Todo
+export default Todo;
