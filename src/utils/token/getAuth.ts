@@ -1,5 +1,5 @@
-import { getAccessToken } from "./accessTokenUtils";
+import { ACCESS_TOKEN_STORAGE } from "./accessTokenUtils";
 
 export function getAuth() {
-  return !!getAccessToken();
+  return !!localStorage.getItem(ACCESS_TOKEN_STORAGE);
 }

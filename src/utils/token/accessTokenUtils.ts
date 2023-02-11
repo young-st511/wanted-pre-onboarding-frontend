@@ -1,4 +1,4 @@
-const ACCESS_TOKEN_STORAGE = "access_token";
+export const ACCESS_TOKEN_STORAGE = "access_token";
 
 function setAccessToken(token: string) {
   if (!token) {
