@@ -25,8 +25,9 @@ function SignUpForm() {
             value={email}
             data-testid="email-input"
             onChange={({ currentTarget }) => setEmail(currentTarget.value)}
+            required
           />
-          <S.Error>{emailError}</S.Error>
+          {emailError ? <S.Error>{emailError}</S.Error> : null}
         </S.Label>
 
         <S.Label isError={!!passwordError}>
@@ -35,8 +36,10 @@ function SignUpForm() {
             value={password}
             data-testid="password-input"
             onChange={({ currentTarget }) => setPassword(currentTarget.value)}
+            type="password"
+            required
           />
-          <S.Error>{passwordError}</S.Error>
+          {passwordError ? <S.Error>{passwordError}</S.Error> : null}
         </S.Label>
 
         <S.SubmitButton
