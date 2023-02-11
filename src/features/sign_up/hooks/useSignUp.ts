@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SignUpRequest } from "../api/signUpApi.type";
 import { postSignUp } from "../api/signUpApi";
 import { AxiosError } from "axios";
@@ -19,8 +19,10 @@ export function useSignUpForm(submitCallback: VoidFunction) {
 
   const isValid = isValidEmail && isValidPassword;
 
-  setIsValidEmail(validateEmail(email));
-  setIsValidPassword(validatePassword(password));
+  useEffect(() => {
+    setIsValidEmail(validateEmail(email));
+    setIsValidPassword(validatePassword(password));
+  }, [email, password]);
 
   const handleSubmit = () => {
     if (!isValid) {

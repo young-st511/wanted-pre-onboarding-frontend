@@ -18,9 +18,7 @@ function ErrorPage() {
         <br />
         문제가 계속된다면 저에게 연락해주세요!
       </Content>
-      <ErrorContent>
-        {error.message || error.statusText}
-      </ErrorContent>
+      <ErrorContent>{error.message || error.statusText}</ErrorContent>
     </Box>
   );
 }
@@ -28,18 +26,30 @@ function ErrorPage() {
 export default ErrorPage;
 
 const Box = styled.div`
-  margin: 5rem 10rem;
+  margin: 5rem 5rem;
   color: ${({ theme }) => theme.color.black};
+
+  * {
+    line-height: 1.2;
+  }
 `;
 
 const Header = styled.h1`
   font-size: 3rem;
   font-weight: 700;
+
+  margin-bottom: 1rem;
 `;
 
 const Content = styled.p`
   font-size: 2.4rem;
   font-weight: 500;
+
+  a {
+    color: ${({theme})=>theme.color.main};
+    font-size: 2.4rem;
+    font-weight: 500;
+  }
 `;
 
 const ErrorContent = styled.p`
