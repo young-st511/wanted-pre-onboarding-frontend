@@ -12,9 +12,11 @@ import {
   setTokenToAxiosDefault,
 } from "../../../utils/axios/axiosTokenUtils";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function useAuth() {
   const [signInError, setSignInError] = useState("");
+  const navigate = useNavigate();
 
   const signIn = async (data: SignInRequest) => {
     if (getAccessToken()) {
@@ -50,10 +52,11 @@ export function useAuth() {
     return true;
   };
 
-  return { signIn, signOut, signInError };
-}
+  const signOut = () => {
+    removeAccessToken();
+    removeTokenFromAxiosDefualt();
+    navigate("/");
+  };
 
-function signOut() {
-  removeAccessToken();
-  removeTokenFromAxiosDefualt();
+  return { signIn, signOut, signInError };
 }

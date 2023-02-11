@@ -15,7 +15,7 @@ function getAccessToken() {
   const token: string | null = localStorage.getItem(ACCESS_TOKEN_STORAGE);
 
   if (!token) {
-    console.error("There is no Token");
+    console.warn("There is no Token");
     return null;
   }
 
