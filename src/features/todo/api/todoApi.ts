@@ -1,9 +1,11 @@
+import { AxiosError } from "axios";
 import {
   deleteRequest,
   getRequest,
   postRequest,
   putRequest,
 } from "../../../api/requests";
+import { showAxiosError } from "../../../utils/axios/showAxiosError";
 import {
   CreateTodoRequest,
   CreateTodoResponse,
@@ -19,16 +21,24 @@ import {
  * - Status: `201 Created`
  */
 async function createTodo(data: CreateTodoRequest) {
-  const res = await postRequest<CreateTodoResponse, CreateTodoRequest>(
-    TodoApiUrl.CREATE_TODO,
-    data
-  );
+  try {
+    const res = await postRequest<CreateTodoResponse, CreateTodoRequest>(
+      TodoApiUrl.CREATE_TODO,
+      data
+    );
 
-  if (res.status != 201) {
-    throw new Error("Status Error: " + res.status);
+    if (res.status != 201) {
+      throw new Error("Status Error: " + res.status);
+    }
+
+    return res.data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      showAxiosError(error);
+    } else {
+      console.error(error);
+    }
   }
-
-  return res.data;
 }
 
 /**
@@ -37,13 +47,21 @@ async function createTodo(data: CreateTodoRequest) {
  * - Status: `200 OK`
  */
 async function getTodoList() {
-  const res = await getRequest<GetTodoListResponse>(TodoApiUrl.GET_TODO_LIST);
+  try {
+    const res = await getRequest<GetTodoListResponse>(TodoApiUrl.GET_TODO_LIST);
 
-  if (res.status != 200) {
-    throw new Error("Status Error: " + res.status);
+    if (res.status != 200) {
+      throw new Error("Status Error: " + res.status);
+    }
+
+    return res.data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      showAxiosError(error);
+    } else {
+      console.error(error);
+    }
   }
-
-  return res.data;
 }
 
 /**
@@ -52,16 +70,24 @@ async function getTodoList() {
  * - Status: `200 OK`
  */
 async function updateTodoById(id: number, data: UpdateTodoRequest) {
-  const res = await putRequest<UpdateTodoResponse, UpdateTodoRequest>(
-    TodoApiUrl.updateTodo(id),
-    data
-  );
+  try {
+    const res = await putRequest<UpdateTodoResponse, UpdateTodoRequest>(
+      TodoApiUrl.updateTodo(id),
+      data
+    );
 
-  if (res.status != 200) {
-    throw new Error("Status Error: " + res.status);
+    if (res.status != 200) {
+      throw new Error("Status Error: " + res.status);
+    }
+
+    return res.data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      showAxiosError(error);
+    } else {
+      console.error(error);
+    }
   }
-
-  return res.data;
 }
 
 /**
@@ -70,10 +96,18 @@ async function updateTodoById(id: number, data: UpdateTodoRequest) {
  * - Status: `204 No Content`
  */
 async function deleteTodoById(id: number) {
-  const res = await deleteRequest(TodoApiUrl.deleteTodo(id));
+  try {
+    const res = await deleteRequest(TodoApiUrl.deleteTodo(id));
 
-  if (res.status != 204) {
-    throw new Error("Status Error: " + res.status);
+    if (res.status != 204) {
+      throw new Error("Status Error: " + res.status);
+    }
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      showAxiosError(error);
+    } else {
+      console.error(error);
+    }
   }
 }
 
