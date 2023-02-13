@@ -1,5 +1,10 @@
 import { useState } from "react";
-import { createTodo, getTodoList, updateTodoById } from "../api/todoApi";
+import {
+  createTodo,
+  deleteTodoById,
+  getTodoList,
+  updateTodoById,
+} from "../api/todoApi";
 import { Todo } from "../api/todoApi.type";
 
 export async function useTodo() {
@@ -51,5 +56,14 @@ export async function useTodo() {
     fetchTodo();
   };
 
-  return { todoList, createNewTodo, editTodo, completeTodo, incompleteTodo };
+  const getRidTodo = ({ id }: Todo) => deleteTodoById(id);
+
+  return {
+    todoList,
+    createNewTodo,
+    editTodo,
+    completeTodo,
+    incompleteTodo,
+    getRidTodo,
+  };
 }
