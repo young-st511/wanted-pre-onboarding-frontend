@@ -1,4 +1,4 @@
-import { FormEventHandler, useState } from "react";
+import { FormEventHandler, useEffect, useState } from "react";
 import { Todo } from "../api/todoApi.type";
 import { TodoMethods } from "./TodoList";
 import * as S from "./TodoList.style";
@@ -18,10 +18,16 @@ function TodoCard({
   const [todoContent, setTodoContent] = useState(todo.todo);
   const handlesubmit: FormEventHandler = (e) => {
     e.preventDefault();
-
-    editTodo(todo, todoContent);
     setIsEdit(false);
+    editTodo(todo, todoContent);
   };
+
+  useEffect(() => {
+    if (!isEdit) {
+      setTodoContent(todo.todo);
+    }
+  }, [isEdit, todo.todo]);
+
   return (
     <S.CardBox>
       <S.HeaderBox>
@@ -30,6 +36,7 @@ function TodoCard({
             {isEdit ? (
               <input
                 value={todoContent}
+                data-testid="modify-input"
                 onChange={({ currentTarget }) =>
                   setTodoContent(currentTarget.value)
                 }
@@ -38,31 +45,46 @@ function TodoCard({
               todo.todo
             )}
           </S.Title>
-          {!isEdit ? (
-            <input
-              type="checkbox"
-              checked={todo.isCompleted}
-              onChange={({ currentTarget }) =>
-                currentTarget.checked === true
-                  ? completeTodo(todo)
-                  : incompleteTodo(todo)
-              }
-            />
-          ) : null}
+          <input
+            type="checkbox"
+            checked={todo.isCompleted}
+            onChange={({ currentTarget }) =>
+              currentTarget.checked === true
+                ? completeTodo(todo)
+                : incompleteTodo(todo)
+            }
+          />
           <S.ButtonBox>
             {isEdit ? (
               <S.RightBox>
-                <S.EditButton type="submit">완료</S.EditButton>
-                <S.EditButton onClick={() => setIsEdit(false)}>
+                <S.EditButton
+                  type="submit"
+                  data-testid="submit-button"
+                  disabled={todo.todo === todoContent}
+                >
+                  완료
+                </S.EditButton>
+                <S.EditButton
+                  onClick={() => setIsEdit(false)}
+                  data-testid="cancel-button"
+                >
                   취소
                 </S.EditButton>
               </S.RightBox>
             ) : (
               <S.RightBox>
-                <S.EditButton onClick={() => setIsEdit(true)}>
+                <S.EditButton
+                  onClick={() => setIsEdit(true)}
+                  type="button"
+                  data-testid="modify-button"
+                >
                   수정
                 </S.EditButton>
-                <S.DeleteButton onClick={() => getRidTodo(todo)}>
+                <S.DeleteButton
+                  onClick={() => getRidTodo(todo)}
+                  type="button"
+                  data-testid="delete-button"
+                >
                   삭제
                 </S.DeleteButton>
               </S.RightBox>

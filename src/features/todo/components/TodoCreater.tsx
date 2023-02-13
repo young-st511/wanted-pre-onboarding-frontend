@@ -18,6 +18,7 @@ function TodoCreater({ createNewTodo }: Props) {
           <S.Title>
             <input
               value={todoContent}
+              data-testid="new-todo-input"
               onChange={({ currentTarget }) =>
                 setTodoContent(currentTarget.value)
               }
@@ -25,7 +26,9 @@ function TodoCreater({ createNewTodo }: Props) {
           </S.Title>
           <S.ButtonBox>
             <S.RightBox>
-              <S.EditButton type="submit">완료</S.EditButton>
+              <S.EditButton type="submit" data-testid="new-todo-add-button">
+                추가
+              </S.EditButton>
               <S.EditButton onClick={() => setTodoContent("")}>
                 초기화
               </S.EditButton>
