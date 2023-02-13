@@ -63,6 +63,18 @@ export const EditButton = styled(StyledButton)`
 
     transition: background-color 0.2s ease-in-out;
   }
+  
+  &:disabled {
+    color: ${({theme:{color}})=>color.gray2};
+    background-color: ${({theme:{color}})=>color.gray4};
+    &:hover {
+      color: ${({theme:{color}})=>color.gray2};
+      background-color: ${({theme:{color}})=>color.gray4};
+      scale: unset;
+
+      cursor: default;
+    }
+  }
 `;
 
 export const DeleteButton = styled(EditButton)`
