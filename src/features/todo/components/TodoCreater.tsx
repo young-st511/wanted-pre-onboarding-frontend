@@ -12,31 +12,25 @@ function TodoCreater({ createNewTodo }: Props) {
     createNewTodo(todoContent);
   };
   return (
-    <S.CardBox>
-      <S.HeaderBox>
-        <form onSubmit={handlesubmit}>
-          <S.Title>
-            <input
-              value={todoContent}
-              data-testid="new-todo-input"
-              onChange={({ currentTarget }) =>
-                setTodoContent(currentTarget.value)
-              }
-            />
-          </S.Title>
-          <S.ButtonBox>
-            <S.RightBox>
-              <S.EditButton type="submit" data-testid="new-todo-add-button">
-                추가
-              </S.EditButton>
-              <S.EditButton onClick={() => setTodoContent("")}>
-                초기화
-              </S.EditButton>
-            </S.RightBox>
-          </S.ButtonBox>
-        </form>
-      </S.HeaderBox>
-    </S.CardBox>
+    <form onSubmit={handlesubmit}>
+      <S.CardBox>
+        <S.TitleBox>
+          <input
+            value={todoContent}
+            data-testid="new-todo-input"
+            onChange={({ currentTarget }) =>
+              setTodoContent(currentTarget.value)
+            }
+          />
+        </S.TitleBox>
+        <S.ButtonBox>
+          <S.EditButton type="submit" data-testid="new-todo-add-button">
+            추가
+          </S.EditButton>
+          <S.EditButton onClick={() => setTodoContent("")}>초기화</S.EditButton>
+        </S.ButtonBox>
+      </S.CardBox>
+    </form>
   );
 }
 

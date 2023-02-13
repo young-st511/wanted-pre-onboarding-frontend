@@ -6,20 +6,22 @@ export const ListBox = styled.main`
   width: 60vw;
 
   margin: 5rem auto;
-`
-
-export const CardBox = styled.article`
-  margin: 1.2rem auto;
-  padding: 2rem 2.4rem;
 `;
 
-export const HeaderBox = styled.div`
+export const CardBox = styled.article`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  margin: 1.2rem auto;
+  padding: 2rem 2.4rem;
+
+  background-color: ${({ theme: { color } }) => color.white};
+  border-radius: ${({ theme: { size } }) => size.radius};
+  ${({ theme }) => theme.shadow.light};
 `;
 
-export const RightBox = styled.div``;
+export const HeaderBox = styled.div``;
 
 export const List = styled.ul`
   display: flex;
@@ -28,9 +30,22 @@ export const List = styled.ul`
   margin-top: 3rem;
 `;
 
-export const Title = styled.h3`
-  font-size: 2rem;
-  font-weight: 700;
+export const TitleBox = styled.div`
+  h3 {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  input {
+    padding: 0.4rem 0rem;
+
+    width: 100%;
+
+    font-size: 2rem;
+    font-weight: 700;
+
+    border-bottom: 2px solid ${({ theme: { color } }) => color.gray3};
+  }
 `;
 
 export const Contents = styled.p`
@@ -43,6 +58,7 @@ export const Contents = styled.p`
 
 export const ButtonBox = styled.div`
   display: flex;
+  flex-direction: column;
   gap: 0.4rem;
 `;
 
@@ -63,13 +79,13 @@ export const EditButton = styled(StyledButton)`
 
     transition: background-color 0.2s ease-in-out;
   }
-  
+
   &:disabled {
-    color: ${({theme:{color}})=>color.gray2};
-    background-color: ${({theme:{color}})=>color.gray4};
+    color: ${({ theme: { color } }) => color.gray2};
+    background-color: ${({ theme: { color } }) => color.gray4};
     &:hover {
-      color: ${({theme:{color}})=>color.gray2};
-      background-color: ${({theme:{color}})=>color.gray4};
+      color: ${({ theme: { color } }) => color.gray2};
+      background-color: ${({ theme: { color } }) => color.gray4};
       scale: unset;
 
       cursor: default;

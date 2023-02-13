@@ -29,70 +29,68 @@ function TodoCard({
   }, [isEdit, todo.todo]);
 
   return (
-    <S.CardBox>
-      <S.HeaderBox>
-        <form onSubmit={handlesubmit}>
-          <S.Title>
-            {isEdit ? (
-              <input
-                value={todoContent}
-                data-testid="modify-input"
-                onChange={({ currentTarget }) =>
-                  setTodoContent(currentTarget.value)
-                }
-              />
-            ) : (
-              todo.todo
-            )}
-          </S.Title>
-          <input
-            type="checkbox"
-            checked={todo.isCompleted}
-            onChange={({ currentTarget }) =>
-              currentTarget.checked === true
-                ? completeTodo(todo)
-                : incompleteTodo(todo)
-            }
-          />
-          <S.ButtonBox>
-            {isEdit ? (
-              <S.RightBox>
-                <S.EditButton
-                  type="submit"
-                  data-testid="submit-button"
-                  disabled={todo.todo === todoContent}
-                >
-                  완료
-                </S.EditButton>
-                <S.EditButton
-                  onClick={() => setIsEdit(false)}
-                  data-testid="cancel-button"
-                >
-                  취소
-                </S.EditButton>
-              </S.RightBox>
-            ) : (
-              <S.RightBox>
-                <S.EditButton
-                  onClick={() => setIsEdit(true)}
-                  type="button"
-                  data-testid="modify-button"
-                >
-                  수정
-                </S.EditButton>
-                <S.DeleteButton
-                  onClick={() => getRidTodo(todo)}
-                  type="button"
-                  data-testid="delete-button"
-                >
-                  삭제
-                </S.DeleteButton>
-              </S.RightBox>
-            )}
-          </S.ButtonBox>
-        </form>
-      </S.HeaderBox>
-    </S.CardBox>
+    <form onSubmit={handlesubmit}>
+      <S.CardBox>
+        <S.TitleBox>
+          {isEdit ? (
+            <input
+              value={todoContent}
+              data-testid="modify-input"
+              onChange={({ currentTarget }) =>
+                setTodoContent(currentTarget.value)
+              }
+            />
+          ) : (
+            <h3>{todo.todo}</h3>
+          )}
+        </S.TitleBox>
+        <input
+          type="checkbox"
+          checked={todo.isCompleted}
+          onChange={({ currentTarget }) =>
+            currentTarget.checked === true
+              ? completeTodo(todo)
+              : incompleteTodo(todo)
+          }
+        />
+        <S.ButtonBox>
+          {isEdit ? (
+            <>
+              <S.EditButton
+                type="submit"
+                data-testid="submit-button"
+                disabled={todo.todo === todoContent}
+              >
+                완료
+              </S.EditButton>
+              <S.EditButton
+                onClick={() => setIsEdit(false)}
+                data-testid="cancel-button"
+              >
+                취소
+              </S.EditButton>
+            </>
+          ) : (
+            <>
+              <S.EditButton
+                onClick={() => setIsEdit(true)}
+                type="button"
+                data-testid="modify-button"
+              >
+                수정
+              </S.EditButton>
+              <S.DeleteButton
+                onClick={() => getRidTodo(todo)}
+                type="button"
+                data-testid="delete-button"
+              >
+                삭제
+              </S.DeleteButton>
+            </>
+          )}
+        </S.ButtonBox>
+      </S.CardBox>
+    </form>
   );
 }
 
