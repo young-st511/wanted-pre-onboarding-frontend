@@ -61,9 +61,9 @@ export function useTodo() {
     }
     fetchTodo();
   };
-  
-  const getRidTodo = ({ id }: Todo) => {
-    deleteTodoById(id);
+
+  const getRidTodo = async ({ id }: Todo) => {
+    await deleteTodoById(id);
     fetchTodo();
   };
 
