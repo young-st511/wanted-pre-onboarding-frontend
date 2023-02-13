@@ -9,7 +9,7 @@ function TodoCreater({ createNewTodo }: Props) {
   const [todoContent, setTodoContent] = useState("");
   const handlesubmit: FormEventHandler = (e) => {
     e.preventDefault();
-    createNewTodo(todoContent);
+    createNewTodo(todoContent).then(() => setTodoContent(""));
   };
   return (
     <form onSubmit={handlesubmit}>
