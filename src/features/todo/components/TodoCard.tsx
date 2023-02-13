@@ -7,11 +7,20 @@ interface Props extends TodoMethods {
   todo: Todo;
 }
 
-function TodoCard({ todo, completeTodo, incompleteTodo, getRidTodo }: Props) {
+function TodoCard({
+  todo,
+  editTodo,
+  completeTodo,
+  incompleteTodo,
+  getRidTodo,
+}: Props) {
   const [isEdit, setIsEdit] = useState(false);
   const [todoContent, setTodoContent] = useState(todo.todo);
   const handlesubmit: FormEventHandler = (e) => {
     e.preventDefault();
+
+    editTodo(todo, todoContent);
+    setIsEdit(false);
   };
   return (
     <S.CardBox>
@@ -29,15 +38,17 @@ function TodoCard({ todo, completeTodo, incompleteTodo, getRidTodo }: Props) {
               todo.todo
             )}
           </S.Title>
-          <input
-            type="checkbox"
-            checked={todo.isCompleted}
-            onChange={({ currentTarget }) =>
-              currentTarget.value === "true"
-                ? incompleteTodo(todo)
-                : completeTodo(todo)
-            }
-          />
+          {!isEdit ? (
+            <input
+              type="checkbox"
+              checked={todo.isCompleted}
+              onChange={({ currentTarget }) =>
+                currentTarget.checked === true
+                  ? completeTodo(todo)
+                  : incompleteTodo(todo)
+              }
+            />
+          ) : null}
           <S.ButtonBox>
             {isEdit ? (
               <S.RightBox>

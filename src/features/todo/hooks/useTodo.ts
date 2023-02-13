@@ -35,7 +35,7 @@ export function useTodo() {
       return;
     }
 
-    await fetchTodo();
+    fetchTodo();
   };
 
   const completeTodo = async ({ id, todo }: Todo) => {
