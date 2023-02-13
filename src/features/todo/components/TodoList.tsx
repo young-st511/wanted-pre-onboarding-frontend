@@ -14,6 +14,8 @@ export interface TodoMethods {
 
 function TodoList() {
   const { todoList, ...methods } = useTodo();
+  //! TEST
+  console.log(todoList);
   return (
     <>
       <TodoCreater createNewTodo={methods.createNewTodo} />

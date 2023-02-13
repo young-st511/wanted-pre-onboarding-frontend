@@ -31,6 +31,7 @@ function TodoCard({ todo, completeTodo, incompleteTodo, getRidTodo }: Props) {
           </S.Title>
           <input
             type="checkbox"
+            checked={todo.isCompleted}
             onChange={({ currentTarget }) =>
               currentTarget.value === "true"
                 ? incompleteTodo(todo)
@@ -38,21 +39,21 @@ function TodoCard({ todo, completeTodo, incompleteTodo, getRidTodo }: Props) {
             }
           />
           <S.ButtonBox>
-            <S.DeleteButton onClick={() => getRidTodo(todo)}>
-              삭제
-            </S.DeleteButton>
             {isEdit ? (
-              <S.RightBox>
-                <S.EditButton onClick={() => setIsEdit(true)}>
-                  수정
-                </S.EditButton>
-              </S.RightBox>
-            ) : (
               <S.RightBox>
                 <S.EditButton type="submit">완료</S.EditButton>
                 <S.EditButton onClick={() => setIsEdit(false)}>
                   취소
                 </S.EditButton>
+              </S.RightBox>
+            ) : (
+              <S.RightBox>
+                <S.EditButton onClick={() => setIsEdit(true)}>
+                  수정
+                </S.EditButton>
+                <S.DeleteButton onClick={() => getRidTodo(todo)}>
+                  삭제
+                </S.DeleteButton>
               </S.RightBox>
             )}
           </S.ButtonBox>
