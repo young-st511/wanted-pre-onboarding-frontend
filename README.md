@@ -14,6 +14,30 @@ npm i
 npm start
 ```
 
+---
+
+## 데모 영상
+
+### Todo 생성
+
+![label](readme/demo-create.gif)
+
+### Todo 완료
+
+![label](readme/demo-check.gif)
+
+### Todo 삭제
+
+![label](readme/demo-delete.gif)
+
+### Todo 수정
+
+![label](readme/demo-edit.gif)
+
+### Todo 작성 초기화
+
+![label](readme/demo-reset.gif)
+
 **[🔗 과제 안내 및 API 서버](https://github.com/walking-sunset/selection-task)**
 
 ## 요구 사항
