@@ -16,17 +16,17 @@ function Router() {
           element: <Todo />,
           loader: todoLoader,
         },
+        {
+          path: "signup",
+          element: <SignUp />,
+          loader: signUpLoader,
+        },
+        {
+          path: "signin",
+          element: <SignIn />,
+          loader: signInLoader,
+        },
       ],
-    },
-    {
-      path: "signup",
-      element: <SignUp />,
-      loader: signUpLoader,
-    },
-    {
-      path: "signin",
-      element: <SignIn />,
-      loader: signInLoader,
     },
   ]);
 

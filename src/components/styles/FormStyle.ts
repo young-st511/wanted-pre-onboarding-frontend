@@ -83,11 +83,18 @@ const SubmitButton = styled(StyledButton)`
   font-weight: 700;
   color: ${({ theme: { color } }) => color.white};
 
+  transition: all 0.2s ease-in-out;
+
   &:hover {
     ${({ theme }) => theme.shadow.light};
     scale: 1.01;
+  }
 
-    transition: all 0.2s ease-in-out;
+  &:disabled {
+    color: ${({ theme: { color } }) => color.gray2};
+    background-color: ${({ theme: { color } }) => color.gray4};
+    scale: unset;
+    box-shadow: unset;
   }
 `;
 

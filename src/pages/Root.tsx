@@ -22,7 +22,7 @@ function Root() {
 
   return (
     <>
-      <NavBar />
+      {getAuth() ? <NavBar /> : null}
       <RootBox>
         <Outlet />
       </RootBox>

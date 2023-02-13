@@ -18,8 +18,8 @@ function TodoList() {
   console.log(todoList);
   return (
     <>
-      <TodoCreater createNewTodo={methods.createNewTodo} />
       <S.ListBox>
+        <TodoCreater createNewTodo={methods.createNewTodo} />
         <S.List>
           {todoList.map((elem) => (
             <li key={elem.id}>
