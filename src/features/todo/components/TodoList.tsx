@@ -1,6 +1,7 @@
 import { Todo } from "../api/todoApi.type";
 import { useTodo } from "../hooks/useTodo";
 import TodoCard from "./TodoCard";
+import TodoCreater from "./TodoCreater";
 import * as S from "./TodoList.style";
 
 export interface TodoMethods {
@@ -11,18 +12,21 @@ export interface TodoMethods {
   getRidTodo: (todo: Todo) => void;
 }
 
-async function TodoList() {
-  const { todoList, ...methods } = await useTodo();
+function TodoList() {
+  const { todoList, ...methods } = useTodo();
   return (
-    <S.ListBox>
-      <S.List>
-        {todoList.map((elem) => (
-          <li key={elem.id}>
-            <TodoCard todo={elem} {...methods} />
-          </li>
-        ))}
-      </S.List>
-    </S.ListBox>
+    <>
+      <TodoCreater createNewTodo={methods.createNewTodo} />
+      <S.ListBox>
+        <S.List>
+          {todoList.map((elem) => (
+            <li key={elem.id}>
+              <TodoCard todo={elem} {...methods} />
+            </li>
+          ))}
+        </S.List>
+      </S.ListBox>
+    </>
   );
 }
 

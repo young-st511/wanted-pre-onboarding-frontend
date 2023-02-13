@@ -6,9 +6,6 @@ function setAccessToken(token: string) {
   }
 
   localStorage.setItem(ACCESS_TOKEN_STORAGE, token);
-
-  //! TEST
-  console.log("token in!", localStorage.getItem(ACCESS_TOKEN_STORAGE));
 }
 
 function getAccessToken() {
