@@ -1,8 +1,9 @@
 import { redirect } from "react-router-dom";
+import TodoList from "../features/todo/components/TodoList";
 import { getAuth } from "../utils/token/getAuth";
 
 function Todo() {
-  return <div>Todo</div>;
+  return <TodoList />;
 }
 
 export function todoLoader() {
