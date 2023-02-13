@@ -2,7 +2,7 @@
 
 > 원티드 프리온보딩 FE 인턴십 선발과제 수행 레파지토리 입니다.
 
-## [🔗 과제 안내 및 API 서버](https://github.com/walking-sunset/selection-task)
+## [🔗 배포사이트](https://wanted-pre-onboarding-frontend-green-nine.vercel.app)
 
 ## 실행 방법
 
@@ -13,6 +13,8 @@
 npm i
 npm start
 ```
+
+**[🔗 과제 안내 및 API 서버](https://github.com/walking-sunset/selection-task)**
 
 ## 요구 사항
 

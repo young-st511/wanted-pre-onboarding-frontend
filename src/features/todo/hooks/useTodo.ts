@@ -61,8 +61,11 @@ export function useTodo() {
     }
     fetchTodo();
   };
-
-  const getRidTodo = ({ id }: Todo) => deleteTodoById(id);
+  
+  const getRidTodo = ({ id }: Todo) => {
+    deleteTodoById(id);
+    fetchTodo();
+  };
 
   return {
     todoList,
