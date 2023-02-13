@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   createTodo,
   deleteTodoById,
@@ -7,10 +7,16 @@ import {
 } from "../api/todoApi";
 import { Todo } from "../api/todoApi.type";
 
-export async function useTodo() {
-  const [todoList, setTodoList] = useState((await getTodoList()) ?? []);
+export function useTodo() {
+  const [todoList, setTodoList] = useState<Todo[]>([]);
 
-  const fetchTodo = async () => setTodoList((await getTodoList()) ?? []);
+  const fetchTodo = () => {
+    getTodoList().then((value) => value && setTodoList(value));
+  };
+
+  useEffect(() => {
+    fetchTodo();
+  }, []);
 
   const createNewTodo = async (todo: string) => {
     const newTodo = await createTodo({ todo });
